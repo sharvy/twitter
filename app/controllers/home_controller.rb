@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    @tweets = Tweet.latest
+    @tweets = Tweet.only_parents.includes(:user, :comments).latest
   end
 end

@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Tweet from "./Tweet";
 
 const Tweets = ({ tweets }) => {
   return (
-    <ul>
-      {tweets.map((tweet) => (
-        <li key={`tweet${tweet.id}`}>{tweet.text}</li>
-      ))}
-    </ul>
+    <div className="row justify-content-md-center">
+      <div className="col-md-6">
+        {tweets.map((tweet) => (
+          <Tweet key={`tweet-${tweet.id}`} tweet={tweet} />
+        ))}
+      </div>
+    </div>
   );
 };
 

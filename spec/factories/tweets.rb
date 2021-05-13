@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tweet do
-    text { 'MyString' }
+    text { Faker::Quote.famous_last_words }
     user { nil }
   end
 end
