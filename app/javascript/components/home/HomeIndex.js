@@ -32,7 +32,7 @@ const HomeIndex = () => {
   );
 
   const TweetFormSection = () => {
-    if (!isLoggedIn) return <a href={signInUrl}>Sign In</a>;
+    if (!isLoggedIn) return null;
     return <Form />;
   };
 

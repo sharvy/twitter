@@ -9,19 +9,19 @@ const HomeContainer = (props) => {
   const [allUserTweets, setAllUserTweets] = useState(allTweets);
 
   return (
-    <ActionCableProvider url="/cable">
-      <HomeContext.Provider
-        value={{
-          isLoggedIn,
-          signInUrl,
-          tweetsUrl,
-          allUserTweets,
-          setAllUserTweets,
-        }}
-      >
+    <HomeContext.Provider
+      value={{
+        isLoggedIn,
+        signInUrl,
+        tweetsUrl,
+        allUserTweets,
+        setAllUserTweets,
+      }}
+    >
+      <ActionCableProvider url="/cable">
         <HomeIndex />
-      </HomeContext.Provider>
-    </ActionCableProvider>
+      </ActionCableProvider>
+    </HomeContext.Provider>
   );
 };
 

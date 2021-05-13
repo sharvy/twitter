@@ -1,8 +1,10 @@
 import React from "react";
+import { useHomeContext } from "../home/HomeContext";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments";
 
 const Tweet = ({ tweet }) => {
+  const { isLoggedIn } = useHomeContext();
   const { id, text, author, comments } = tweet;
 
   return (
@@ -11,7 +13,9 @@ const Tweet = ({ tweet }) => {
         <div className="justify-content-between align-items-center">
           <div className="justify-content-between align-items-center">
             <div>
-              <div className="h7 text-muted">{author}</div>
+              <a className="h7" href={author.profileUrl}>
+                {author.fullName}
+              </a>
             </div>
           </div>
         </div>
@@ -20,7 +24,7 @@ const Tweet = ({ tweet }) => {
         <p className="card-text">{text}</p>
       </div>
       <div className="card-footer">
-        <CommentForm parentId={id} />
+        {isLoggedIn && <CommentForm parentId={id} />}
         <Comments comments={comments} />
       </div>
     </div>
