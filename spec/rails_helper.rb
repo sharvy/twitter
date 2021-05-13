@@ -7,7 +7,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -35,9 +35,21 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  # Cleaner backtrace for failure messages
+  config.backtrace_exclusion_patterns = [
+    %r{/lib\d*/ruby/},
+    %r{bin/},
+    /gems/,
+    %r{spec/spec_helper\.rb},
+    %r{lib/rspec/(core|expectations|matchers|mocks)}
+  ]
+
+  # To use Devise test helpers
+  config.include Warden::Test::Helpers
+
   # To use ActiveJob with RSpec
   config.include ActiveJob::TestHelper
-  
+
   # Factory Bot helper methods
   config.include FactoryBot::Syntax::Methods
 
@@ -81,6 +93,10 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+  end
+
+  config.after(:each) do
+    Warden.test_reset!
   end
 end
 
