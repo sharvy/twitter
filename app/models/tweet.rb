@@ -8,6 +8,6 @@ class Tweet < ApplicationRecord
 
   validates_presence_of :text, :user_id
 
-  scope :latest, -> { all.order(created_at: :desc) }
+  scope :latest, -> { order(created_at: :desc) }
   scope :only_parents, -> { where(parent_id: nil) }
 end

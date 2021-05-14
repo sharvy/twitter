@@ -44,7 +44,8 @@ RSpec.configure do |config|
     %r{lib/rspec/(core|expectations|matchers|mocks)}
   ]
 
-  # To use Devise test helpers
+  # To use Devise test helpers for system specs and request specs
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Warden::Test::Helpers
 
   # To use ActiveJob with RSpec
