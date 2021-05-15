@@ -39,4 +39,4 @@ rspec
 - User multiple feeds
 
 # Test Coverage
-382 / 393 LOC (97.2%) covered
+414 / 425 LOC (97.41%) covered
