@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { axiosHeaders } from "../shared/utils";
+import Tweets from "../tweets/Tweets";
 
-const Show = ({ currentUser, user, following }) => {
+const Show = ({ currentUser, user, following, tweets }) => {
   const [isFollowing, setIsFollowing] = useState(following);
   const followable = currentUser.id == user.id ? false : true;
 
@@ -27,10 +28,21 @@ const Show = ({ currentUser, user, following }) => {
 
   return (
     <div className="container">
-      <div className="bg-light p-5 rounded mt-3">
+      <div className="jumbotron">
         <h1>{user.fullName}</h1>
-        <FollowButton />
+        <p>
+          <FollowButton />
+        </p>
       </div>
+      <div>
+        <button class="btn btn-primary mr-2 disabled" type="button">
+          Following <span class="badge">{user.followeesCount}</span>
+        </button>
+        <button class="btn btn-primary mr-2 disabled" type="button">
+          Followers <span class="badge">{user.followersCount}</span>
+        </button>
+      </div>
+      <Tweets tweets={tweets} />
     </div>
   );
 };

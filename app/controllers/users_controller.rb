@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[show follow unfollow]
   before_action :set_user, only: %i[show follow unfollow]
 
-  def show; end
+  def show
+    @tweets = TweetsQuery.new(user_ids: [@user.id]).call
+  end
 
   def follow
     current_user.follow!(@user)

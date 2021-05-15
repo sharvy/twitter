@@ -1,5 +1,6 @@
 <%= react_component("users/Show", {
   currentUser: JSON.parse(render(partial: '/users/user.json.jbuilder', object: current_user)),
   user: JSON.parse(render(partial: '/users/user.json.jbuilder', object: @user)),
+  tweets: JSON.parse(render(template: '/tweets/tweets.json.jbuilder')),
   following: current_user&.follows?(@user)
 }) %>

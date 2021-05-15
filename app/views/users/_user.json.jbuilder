@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 json.key_format! camelize: :lower
-json.extract! user, :id
+json.extract! user, :id, :followers_count, :followees_count, :tweets_count
 
 decorated_user = UserDecorator.new(user)
 

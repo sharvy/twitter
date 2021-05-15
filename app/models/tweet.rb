@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Tweet < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: :tweets_count
   belongs_to :parent, class_name: 'Tweet', optional: true
 
   has_many :comments, class_name: 'Tweet', foreign_key: 'parent_id'
