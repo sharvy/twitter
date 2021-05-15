@@ -12,6 +12,23 @@ Frontend data store using: React Hooks and Context API
 Test Frameworks and driver: RSpec, Capybara, Cuprite
 ```
 
+# Getting Started
+```
+git clone git@github.com:sharvy/twitter.git
+cd twitter
+bin/setup
+rails s
+```
+Open [**localhost:3000**](http://localhost:3000) in web browser
+
+TEST USER
+email: **john@doe.com**
+password: **123456**
+
+# Run Tests
+```
+rspec
+```
 
 # Fragments (PRs)
 - [User Authentication](https://github.com/sharvy/twitter/pull/8)
