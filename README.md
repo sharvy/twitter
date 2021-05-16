@@ -31,12 +31,12 @@ rspec
 ```
 
 # Fragments (PRs)
-- [User Authentication](https://github.com/sharvy/twitter/pull/8)
-- [User can Tweet](https://github.com/sharvy/twitter/pull/9)
-- [User can Comment](https://github.com/sharvy/twitter/pull/10)
+- [User multiple feeds](https://github.com/sharvy/twitter/pull/13)
+- [User profile with Tweets, Stats](https://github.com/sharvy/twitter/pull/12)
 - [User can Follow/Unfollow](https://github.com/sharvy/twitter/pull/11)
-- User profile with Tweets, Stats
-- User multiple feeds
+- [User can Comment](https://github.com/sharvy/twitter/pull/10)
+- [User can Tweet](https://github.com/sharvy/twitter/pull/9)
+- [User Signup & Login](https://github.com/sharvy/twitter/pull/8)
 
 # Test Coverage
-414 / 425 LOC (97.41%) covered
+448 / 459 LOC (97.6%) covered
