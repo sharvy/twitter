@@ -19,13 +19,9 @@ const Form = () => {
 
     axios
       .post(tweetsUrl, params)
-      .then((response) => {
-        setSubmitting(false);
-        setText("");
-      })
+      .then((response) => console.log(response))
       .catch((error) => {
         console.log(error);
-        setSubmitting(false);
       });
   };
 
