@@ -3,32 +3,32 @@ import Tweets from "../tweets/Tweets";
 import Form from "./Form";
 import { useHomeContext } from "./HomeContext";
 import { useActionCable } from "use-action-cable";
+import InternalFeedNavigation from "./Navigation";
 
 const HomeIndex = () => {
-  const { allUserTweets, setAllUserTweets, isLoggedIn, signInUrl } =
-    useHomeContext();
+  const { tweets, setTweets, isLoggedIn } = useHomeContext();
 
-  const updateAllUserTweets = (tweet) => {
+  const updateTweetsOrComments = (tweet) => {
     if (!tweet.parentId) updateTweets(tweet);
     else updateComments(tweet);
   };
 
   const updateTweets = (tweet) => {
-    const filteredTweets = allUserTweets.filter((t) => t.id != tweet.id);
-    setAllUserTweets([tweet, ...filteredTweets]);
+    const filteredTweets = tweets.filter((t) => t.id != tweet.id);
+    setTweets([tweet, ...filteredTweets]);
   };
 
   const updateComments = (comment) => {
-    const index = allUserTweets.findIndex((t) => t.id == comment.parentId);
+    const index = tweets.findIndex((t) => t.id == comment.parentId);
     if (index === -1) return;
 
-    allUserTweets[index].comments = [...allUserTweets[index].comments, comment];
-    setAllUserTweets([...allUserTweets]);
+    tweets[index].comments = [...tweets[index].comments, comment];
+    setTweets([...tweets]);
   };
 
   useActionCable(
     { channel: "AllUsersTweetsChannel" },
-    { received: (tweet) => updateAllUserTweets(tweet) }
+    { received: (tweet) => updateTweetsOrComments(tweet) }
   );
 
   const TweetFormSection = () => {
@@ -38,8 +38,10 @@ const HomeIndex = () => {
 
   return (
     <div className="container-fluid">
+      {isLoggedIn && <InternalFeedNavigation />}
+
       <TweetFormSection />
-      <Tweets tweets={allUserTweets} />
+      <Tweets tweets={tweets} />
     </div>
   );
 };
