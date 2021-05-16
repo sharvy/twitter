@@ -3,7 +3,7 @@
 class TweetsQuery
   def initialize(user_ids: nil, relation: nil)
     @user_ids = user_ids
-    @relation = relation || Tweet.includes(:user, comments: :user).only_parents
+    @relation = relation || Tweet.includes(:user, comments: :user).only_parents.latest
   end
 
   def call
