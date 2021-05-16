@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'home/index'
-  root to: 'home#index'
+  get '/global', to: 'home#global'
+
+  authenticated :user do
+    root 'home#index', as: :authenticated_root
+  end
+
+  root to: 'home#global'
 end

@@ -6,7 +6,7 @@ import { ActionCableProvider } from "use-action-cable";
 
 const HomeContainer = (props) => {
   const { tweetsUrl, allTweets, isLoggedIn, signInUrl } = props;
-  const [allUserTweets, setAllUserTweets] = useState(allTweets);
+  const [tweets, setTweets] = useState(allTweets);
 
   return (
     <HomeContext.Provider
@@ -14,8 +14,8 @@ const HomeContainer = (props) => {
         isLoggedIn,
         signInUrl,
         tweetsUrl,
-        allUserTweets,
-        setAllUserTweets,
+        tweets,
+        setTweets,
       }}
     >
       <ActionCableProvider url="/cable">

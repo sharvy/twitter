@@ -13,7 +13,7 @@ class TweetsQuery
   private
 
   def of_users
-    return @relation unless @user_ids
+    return @relation unless @user_ids.present?
 
     @relation.where(user_id: @user_ids)
   end

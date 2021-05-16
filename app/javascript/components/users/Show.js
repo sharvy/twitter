@@ -35,11 +35,11 @@ const Show = ({ currentUser, user, following, tweets }) => {
         </p>
       </div>
       <div>
-        <button class="btn btn-primary mr-2 disabled" type="button">
-          Following <span class="badge">{user.followeesCount}</span>
+        <button className="btn btn-primary mr-2 disabled" type="button">
+          Following <span className="badge">{user.followeesCount}</span>
         </button>
-        <button class="btn btn-primary mr-2 disabled" type="button">
-          Followers <span class="badge">{user.followersCount}</span>
+        <button className="btn btn-primary mr-2 disabled" type="button">
+          Followers <span className="badge">{user.followersCount}</span>
         </button>
       </div>
       <Tweets tweets={tweets} />
