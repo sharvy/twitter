@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Tweets from "../tweets/Tweets";
 import Form from "./Form";
 import { useHomeContext } from "./HomeContext";
-import { useActionCable } from "use-action-cable";
 import InternalFeedNavigation from "./Navigation";
+import AllUsersTweetsChannel from "../../channels/all_users_tweets_channel";
 
 const HomeIndex = () => {
+  useEffect(() => {
+    AllUsersTweetsChannel.received = (tweet) => {
+      updateTweetsOrComments(tweet);
+    };
+  }, []);
+
   const { tweets, setTweets, isLoggedIn } = useHomeContext();
 
   const updateTweetsOrComments = (tweet) => {
@@ -14,8 +20,8 @@ const HomeIndex = () => {
   };
 
   const updateTweets = (tweet) => {
-    const filteredTweets = tweets.filter((t) => t.id != tweet.id);
-    setTweets([tweet, ...filteredTweets]);
+    tweets.unshift(tweet)
+    setTweets([...tweets]);
   };
 
   const updateComments = (comment) => {
@@ -25,11 +31,6 @@ const HomeIndex = () => {
     tweets[index].comments = [...tweets[index].comments, comment];
     setTweets([...tweets]);
   };
-
-  useActionCable(
-    { channel: "AllUsersTweetsChannel" },
-    { received: (tweet) => updateTweetsOrComments(tweet) }
-  );
 
   const TweetFormSection = () => {
     if (!isLoggedIn) return null;
